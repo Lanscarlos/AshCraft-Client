@@ -13,14 +13,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <CheckBox
+            android:id="@+id/selected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ImageView
             android:id="@+id/image"
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/selected"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/bitmap_state_sunny" />
 
@@ -46,24 +55,24 @@
 
         <ImageView
             android:id="@+id/imageView14"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_marginEnd="8dp"
-            app:tint="?attr/colorPrimary"
             app:layout_constraintBottom_toBottomOf="@+id/imageView13"
             app:layout_constraintEnd_toStartOf="@+id/amount"
             app:layout_constraintTop_toTopOf="@+id/imageView13"
-            app:srcCompat="@drawable/bitmap_subtract" />
+            app:srcCompat="@drawable/bitmap_subtract_filled"
+            app:tint="?attr/colorPrimary" />
 
         <ImageView
             android:id="@+id/imageView13"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_marginEnd="32dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/bitmap_add"
+            app:srcCompat="@drawable/bitmap_add_filled"
             app:tint="?attr/colorPrimary" />
 
         <TextView
