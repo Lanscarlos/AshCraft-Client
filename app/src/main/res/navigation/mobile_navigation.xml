@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <craft_fragment
+        android:id="@+id/navigation_home"
+        android:name="top.lanscarlos.ashcraft.ui.home.HomeFragment"
+        tools:layout="@layout/fragment_home" />
+
+    <craft_fragment
+        android:id="@+id/navigation_chat"
+        android:name="top.lanscarlos.ashcraft.ui.dashboard.DashboardFragment"
+        tools:layout="@layout/fragment_dashboard" />
+
+    <craft_fragment
+        android:id="@+id/navigation_cart"
+        android:name="top.lanscarlos.ashcraft.ui.cart.CartFragment"
+        tools:layout="@layout/fragment_cart" />
+
+    <craft_fragment
+        android:id="@+id/navigation_profile"
+        android:name="top.lanscarlos.ashcraft.ui.profile.ProfileFragment"
+        tools:layout="@layout/fragment_profile" />
+</navigation>
