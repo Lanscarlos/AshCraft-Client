@@ -5,10 +5,14 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
+import top.lanscarlos.ashcraft.R
 import top.lanscarlos.ashcraft.databinding.FragmentCartBinding
 import top.lanscarlos.ashcraft.pojo.Treasure
+import top.lanscarlos.ashcraft.ui.profile.ProfileViewModel
 
 class CartFragment : Fragment() {
 
@@ -21,6 +25,7 @@ class CartFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCartBinding.inflate(inflater, container, false)
+        val viewModel = ViewModelProvider(this).get(CartViewModel::class.java)
 
         val items = mutableListOf(
             Treasure("大保健", "值得一试", 9.9, "TB1sv3LtYj1gK0jSZFuXXcrHpXa-424-255.png"),
@@ -32,6 +37,18 @@ class CartFragment : Fragment() {
 
         val swipeHelper = SwipeCallback(binding.delete)
         ItemTouchHelper(swipeHelper).attachToRecyclerView(binding.items)
+
+        binding.selectAll.setOnCheckedChangeListener { _, selected ->
+            viewModel.isSelectAll.value = selected
+        }
+
+        viewModel.isSelectAll.observe(viewLifecycleOwner, false) {
+            for (i in 0 until adapter.itemCount) {
+                binding.items.layoutManager!!
+                    .findViewByPosition(i)!!
+                    .findViewById<CheckBox>(R.id.selected).isChecked = it
+            }
+        }
 
         binding.swipeRefresh.apply {
             setColorSchemeColors(TypedValue().also {

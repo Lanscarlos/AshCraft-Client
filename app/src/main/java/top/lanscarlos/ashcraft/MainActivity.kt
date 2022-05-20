@@ -1,6 +1,7 @@
 package top.lanscarlos.ashcraft
 
 import android.os.Bundle
+import android.util.Log
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.forEach
@@ -15,14 +16,13 @@ import top.lanscarlos.ashcraft.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private var recreateFix = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        AshCraftContext.theme.observe(this) {
-            if (recreateFix) recreate() else recreateFix = true
+        AshCraftContext.theme.observe(this, false) {
+            recreate()
         }
-        setTheme(AshCraftContext.theme.value!!)
+        setTheme(AshCraftContext.theme.value)
         initNavigationBar()
     }
 

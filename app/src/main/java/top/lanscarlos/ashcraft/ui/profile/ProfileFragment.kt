@@ -23,30 +23,23 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        Log.d("Ash", "Profile create...")
-        val profileViewModel =
-            ViewModelProvider(this).get(ProfileViewModel::class.java)
-
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
-        val root = binding.root
+        val viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
 
         binding.appBar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
             val maxOffset = binding.toolBar.height - binding.appBar.height
-            Log.d("Ash", "maxOffset -> $maxOffset")
-            Log.d("Ash", "verticalOffset -> $verticalOffset")
-            profileViewModel.setCollapse(maxOffset == verticalOffset)
+            viewModel.collapsed.value = maxOffset == verticalOffset
         })
 
         val profileToolbar = binding.profileToolbar.root
-        profileViewModel.collapse.observe(viewLifecycleOwner) { collapsed ->
+        viewModel.collapsed.observe(viewLifecycleOwner, false) { collapsed ->
             ObjectAnimator.ofFloat(profileToolbar, "alpha", if (collapsed) 1f else 0f).apply {
                 duration = 100
-                start()
-            }
+            }.start()
         }
 
         binding.imgBackground.setImageResource(R.drawable.bitmap_profile_background)
 
-        return root
+        return binding.root
     }
 }
