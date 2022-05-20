@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="pink" parent="Theme.AshCraft">
+        <item name="colorPrimary">#de86ff</item>
+        <item name="colorSecondary">#FFCDFA</item>
+        <item name="colorOnSecondary">#fb7299</item>
+        <item name="colorAccent">#de86ff</item>
+    </style>
+    <style name="blue" parent="Theme.AshCraft">
+        <item name="colorPrimary">#268ded</item>
+        <item name="colorSecondary">#8BDDF1</item>
+        <item name="colorOnSecondary">#1769e0</item>
+        <item name="colorAccent">#268ded</item>
+    </style>
+</resources>
