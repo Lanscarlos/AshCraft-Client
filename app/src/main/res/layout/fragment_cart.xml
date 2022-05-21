@@ -7,7 +7,7 @@
     tools:context=".ui.cart.CartFragment">
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/totalPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -25,8 +25,8 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="4dp"
         android:text="合计"
-        app:layout_constraintBottom_toBottomOf="@+id/textView13"
-        app:layout_constraintEnd_toStartOf="@+id/textView13" />
+        app:layout_constraintBottom_toBottomOf="@+id/totalPrice"
+        app:layout_constraintEnd_toStartOf="@+id/totalPrice" />
 
     <TextView
         android:id="@+id/textView11"

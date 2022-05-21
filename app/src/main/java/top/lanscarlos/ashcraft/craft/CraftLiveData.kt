@@ -41,14 +41,12 @@ class CraftLiveData<T> : MutableLiveData<T> {
         cache = false
         super.observe(owner) inner@{
             if (silent) {
-                Log.d("Ash", "silent")
                 silent = false
                 return@inner
             }else if (!cache && !runFirst) {
                 cache = true
                 return@inner
             }
-            Log.d("Ash", "not silent")
             func(it)
         }
     }

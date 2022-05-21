@@ -9,6 +9,6 @@ import top.lanscarlos.ashcraft.util.mutableLiveOf
 class CartViewModel : ViewModel() {
 
     val isSelecting = mutableLiveOf(false)
-    val isSelectAll = mutableLiveOf(true)
+    val isSelectAll = mutableLiveOf(false)
 
 }
