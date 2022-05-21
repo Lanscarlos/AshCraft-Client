@@ -32,7 +32,7 @@ class ProfileFragment : Fragment() {
         })
 
         val profileToolbar = binding.profileToolbar.root
-        viewModel.collapsed.observe(viewLifecycleOwner, false) { collapsed ->
+        viewModel.collapsed.observe(viewLifecycleOwner, true) { collapsed ->
             ObjectAnimator.ofFloat(profileToolbar, "alpha", if (collapsed) 1f else 0f).apply {
                 duration = 100
             }.start()

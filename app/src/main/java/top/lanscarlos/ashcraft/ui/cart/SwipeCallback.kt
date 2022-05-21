@@ -7,6 +7,7 @@ import android.widget.ImageView
 import androidx.core.animation.doOnEnd
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import kotlin.math.absoluteValue
 
 class SwipeCallback(
     val delete: ImageView
@@ -51,7 +52,7 @@ class SwipeCallback(
         }.doOnEnd {
             holder.remove()
             delete.translationX = delete.width.toFloat()
-            delete.alpha = 1f
+//            delete.alpha = 1f
             swiping = false
         }
     }
@@ -69,7 +70,7 @@ class SwipeCallback(
         if (holder.isRemoved) return
         delete.translationY = holder.itemView.y + holder.itemView.height * 0.9f
         delete.translationX = dX + delete.width
-        Log.d("Ash", "dX -> $dX")
+        delete.alpha = ((dX.absoluteValue - delete.width) / delete.width).coerceIn(0f, 1f)
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
     }
 }
