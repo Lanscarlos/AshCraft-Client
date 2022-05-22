@@ -95,7 +95,7 @@ class HomeFragment : Fragment() {
      *
      * @author https://blog.csdn.net/HBK_MySummerCT/article/details/104534851
      * */
-    fun ViewPager2.setCurrentItemByAnimator(
+    private fun ViewPager2.setCurrentItemByAnimator(
         item: Int,
         duration: Long = 500L,
         interpolator: TimeInterpolator = AccelerateDecelerateInterpolator(),

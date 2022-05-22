@@ -1,20 +1,17 @@
 package top.lanscarlos.ashcraft.ui.cart
 
-import android.graphics.BitmapFactory
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import top.lanscarlos.ashcraft.AshCraftContext
 import top.lanscarlos.ashcraft.R
-import top.lanscarlos.ashcraft.pojo.Treasure
-import top.lanscarlos.ashcraft.util.AppService
-import top.lanscarlos.ashcraft.util.buildService
-import top.lanscarlos.ashcraft.util.enqueue
+import top.lanscarlos.ashcraft.internet.BaseUrl
+import top.lanscarlos.ashcraft.internet.GenericService.Companion.accessBitmap
 import java.lang.IllegalArgumentException
 
 class CartAdapter(
@@ -126,11 +123,8 @@ class CartAdapter(
                     holder.amount.text = items[index].amount.toString()
                 }
 
-                buildService<AppService>().getImg(items[index].img).enqueue { _, response ->
-                    val stream = response.body()?.byteStream()
-                    val bitmap = BitmapFactory.decodeStream(stream)
-                    holder.image.setImageBitmap(bitmap)
-                    Log.d("Ash", "Image Response!")
+                items[index].img.toUri().accessBitmap(BaseUrl.ALI_CDN) {
+                    holder.image.setImageBitmap(it)
                 }
             }
 //            is ViewFooter -> {}
