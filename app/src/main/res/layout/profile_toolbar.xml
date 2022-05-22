@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/avatar"
             android:layout_width="match_parent"
             android:layout_height="32dp"
             android:scaleType="centerCrop"
@@ -26,12 +26,12 @@
     </com.google.android.material.card.MaterialCardView>
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginStart="10dp"
-        android:text="刘华强"
+        android:text="@string/title_profile_name"
         android:textColor="?attr/colorPrimaryDark"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/materialCardView"

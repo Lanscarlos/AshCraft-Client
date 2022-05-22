@@ -37,11 +37,6 @@ class CartFragment : Fragment() {
         _binding = FragmentCartBinding.inflate(inflater, container, false)
         _viewModel = ViewModelProvider(this).get(CartViewModel::class.java)
 
-
-        cart.addItem(Treasure("折叠板凳", "值得一试", 9.9, "TB1sv3LtYj1gK0jSZFuXXcrHpXa-424-255.png"))
-        cart.addItem(Treasure("这是啥？", "哈哈哈哈", 99.9, "TB1RkUFt.H1gK0jSZSyXXXtlpXa-424-255.png"))
-//        cart.addItem(Treasure("鸡汤", "哈哈哈哈", 19.9, "TB1RkUFt.H1gK0jSZSyXXXtlpXa-424-255.png"))
-
         val adapter = CartAdapter(binding.items, viewModel)
 
         // 设置数量监听器
@@ -101,8 +96,8 @@ class CartFragment : Fragment() {
         /*
          * 监听购物车列表变化
          * */
+        val button = binding.selectAll
         AshCraftContext.cart.addOnItemsSizeChanged { size, isAdd ->
-            val button = binding.selectAll
             if (isAdd) return@addOnItemsSizeChanged
             if (size <= 0) {
                 // 购物车被清空 禁用全选按钮

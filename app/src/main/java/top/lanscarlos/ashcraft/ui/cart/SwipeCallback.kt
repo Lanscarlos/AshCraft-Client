@@ -68,7 +68,7 @@ class SwipeCallback(
     ) {
         val holder = viewHolder as? CartAdapter.ViewItem ?: return
         if (holder.isRemoved) return
-        delete.translationY = holder.itemView.y + holder.itemView.height * 0.9f
+        delete.translationY = holder.itemView.y + holder.itemView.height * 0.33f
         delete.translationX = dX + delete.width
         delete.alpha = ((dX.absoluteValue - delete.width) / delete.width).coerceIn(0f, 1f)
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)

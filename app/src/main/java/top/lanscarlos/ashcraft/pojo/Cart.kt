@@ -12,6 +12,15 @@ class Cart {
 
     private val onItemsSizeChanged: MutableList<((size: Int, isAdd: Boolean) -> Unit)> = mutableListOf()
 
+    init {
+        addItem(Treasure("折叠板凳", "值得一试", 9.9, "TB1sv3LtYj1gK0jSZFuXXcrHpXa-424-255.png"))
+        addItem(Treasure("这是啥？", "哈哈哈哈", 99.9, "TB1RkUFt.H1gK0jSZSyXXXtlpXa-424-255.png"))
+        addItem(Treasure("鸡汤", "哈哈哈哈", 19.9, "TB1RkUFt.H1gK0jSZSyXXXtlpXa-424-255.png"))
+        addItem(Treasure("鸡汤", "哈哈哈哈", 19.9, "TB1RkUFt.H1gK0jSZSyXXXtlpXa-424-255.png"))
+        addItem(Treasure("鸡汤", "哈哈哈哈", 19.9, "TB1RkUFt.H1gK0jSZSyXXXtlpXa-424-255.png"))
+        addItem(Treasure("鸡汤", "哈哈哈哈", 19.9, "TB1RkUFt.H1gK0jSZSyXXXtlpXa-424-255.png"))
+    }
+
     fun isAllSelect(): Boolean = selected == items.size
 
     fun addItem(item: Treasure) {

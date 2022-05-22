@@ -26,11 +26,12 @@
 
             <ImageView
                 android:id="@+id/imgBackground"
+                app:srcCompat="@drawable/bitmap_profile_background"
                 android:layout_width="match_parent"
                 android:layout_height="240dp"
                 android:scaleType="centerCrop"
                 app:layout_collapseMode="parallax"
-                android:contentDescription="@string/profile_image_description_background" />
+                android:contentDescription="@string/image_profile_background" />
 
             <include
                 android:id="@+id/profile_header"

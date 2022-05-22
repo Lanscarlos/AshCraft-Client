@@ -8,7 +8,7 @@
     <craft_fragment
         android:id="@+id/navigation_home"
         android:name="top.lanscarlos.ashcraft.ui.home.HomeFragment"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_homex" />
 
     <craft_fragment
         android:id="@+id/navigation_chat"

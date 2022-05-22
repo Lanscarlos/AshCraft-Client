@@ -8,9 +8,14 @@
         <entry key="..\:/Aiurlanta/Database/WorkSpace/AndroidStudio/AshCraft/app/src/main/res/drawable/af_icon_store.xml" value="0.165" />
         <entry key="..\:/Aiurlanta/Database/WorkSpace/AndroidStudio/AshCraft/app/src/main/res/drawable/af_icon_user.xml" value="0.165" />
         <entry key="..\:/Aiurlanta/Database/WorkSpace/AndroidStudio/AshCraft/app/src/main/res/drawable/background_gradient.xml" value="0.1" />
+        <entry key="..\:/Aiurlanta/Database/WorkSpace/AndroidStudio/AshCraft/app/src/main/res/drawable/border.xml" value="0.317" />
+        <entry key="..\:/Aiurlanta/Database/WorkSpace/AndroidStudio/AshCraft/app/src/main/res/drawable/border_2dp.xml" value="0.367" />
+        <entry key="..\:/Aiurlanta/Database/WorkSpace/AndroidStudio/AshCraft/app/src/main/res/drawable/border_top.xml" value="0.317" />
         <entry key="..\:/Aiurlanta/Database/WorkSpace/AndroidStudio/AshCraft/app/src/main/res/drawable/btn_cart_settle.xml" value="0.2645" />
         <entry key="..\:/Aiurlanta/Database/WorkSpace/AndroidStudio/AshCraft/app/src/main/res/drawable/btn_cart_settle_normal.xml" value="0.2645" />
         <entry key="..\:/Aiurlanta/Database/WorkSpace/AndroidStudio/AshCraft/app/src/main/res/drawable/btn_cart_settle_pressed.xml" value="0.2645" />
+        <entry key="..\:/Aiurlanta/Database/WorkSpace/AndroidStudio/AshCraft/app/src/main/res/drawable/corners_16dp.xml" value="0.317" />
+        <entry key="..\:/Aiurlanta/Database/WorkSpace/AndroidStudio/AshCraft/app/src/main/res/drawable/corners_32dp.xml" value="0.317" />
         <entry key="..\:/Aiurlanta/Database/WorkSpace/AndroidStudio/AshCraft/app/src/main/res/drawable/gradient_white.xml" value="0.2645" />
         <entry key="..\:/Aiurlanta/Database/WorkSpace/AndroidStudio/AshCraft/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.165" />
         <entry key="..\:/Aiurlanta/Database/WorkSpace/AndroidStudio/AshCraft/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.165" />
@@ -22,19 +27,21 @@
         <entry key="..\:/Aiurlanta/Database/WorkSpace/AndroidStudio/AshCraft/app/src/main/res/layout/cart_fragment.xml" value="0.33061594202898553" />
         <entry key="..\:/Aiurlanta/Database/WorkSpace/AndroidStudio/AshCraft/app/src/main/res/layout/cart_item.xml" value="0.597775718257646" />
         <entry key="..\:/Aiurlanta/Database/WorkSpace/AndroidStudio/AshCraft/app/src/main/res/layout/cart_items_footer.xml" value="0.33061594202898553" />
-        <entry key="..\:/Aiurlanta/Database/WorkSpace/AndroidStudio/AshCraft/app/src/main/res/layout/fragment_cart.xml" value="0.3410757946210269" />
+        <entry key="..\:/Aiurlanta/Database/WorkSpace/AndroidStudio/AshCraft/app/src/main/res/layout/fragment_cart.xml" value="0.7268232385661311" />
         <entry key="..\:/Aiurlanta/Database/WorkSpace/AndroidStudio/AshCraft/app/src/main/res/layout/fragment_cart_ex.xml" value="0.5" />
-        <entry key="..\:/Aiurlanta/Database/WorkSpace/AndroidStudio/AshCraft/app/src/main/res/layout/fragment_home.xml" value="0.2866847826086957" />
+        <entry key="..\:/Aiurlanta/Database/WorkSpace/AndroidStudio/AshCraft/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/Aiurlanta/Database/WorkSpace/AndroidStudio/AshCraft/app/src/main/res/layout/fragment_home_pager.xml" value="0.32653985507246375" />
         <entry key="..\:/Aiurlanta/Database/WorkSpace/AndroidStudio/AshCraft/app/src/main/res/layout/fragment_notifications.xml" value="0.2866847826086957" />
-        <entry key="..\:/Aiurlanta/Database/WorkSpace/AndroidStudio/AshCraft/app/src/main/res/layout/fragment_profile.xml" value="0.5" />
+        <entry key="..\:/Aiurlanta/Database/WorkSpace/AndroidStudio/AshCraft/app/src/main/res/layout/fragment_profile.xml" value="0.33" />
         <entry key="..\:/Aiurlanta/Database/WorkSpace/AndroidStudio/AshCraft/app/src/main/res/layout/fragment_profile_ex.xml" value="0.33061594202898553" />
         <entry key="..\:/Aiurlanta/Database/WorkSpace/AndroidStudio/AshCraft/app/src/main/res/layout/profile_body.xml" value="0.54" />
         <entry key="..\:/Aiurlanta/Database/WorkSpace/AndroidStudio/AshCraft/app/src/main/res/layout/profile_header.xml" value="1.0" />
         <entry key="..\:/Aiurlanta/Database/WorkSpace/AndroidStudio/AshCraft/app/src/main/res/layout/profile_toolbar.xml" value="0.67" />
+        <entry key="..\:/Aiurlanta/Database/WorkSpace/AndroidStudio/AshCraft/app/src/main/res/xml/network_security_config.xml" value="0.32653985507246375" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_16" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_16_PREVIEW" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

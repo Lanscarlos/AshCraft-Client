@@ -1,6 +1,8 @@
 package top.lanscarlos.ashcraft.ui.profile
 
 import android.animation.ObjectAnimator
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,13 +11,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.appbar.AppBarLayout
+import top.lanscarlos.ashcraft.AshCraftContext
 import top.lanscarlos.ashcraft.R
 import top.lanscarlos.ashcraft.databinding.FragmentProfileBinding
+import top.lanscarlos.ashcraft.util.*
 
 class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
+
+    private val user get() = AshCraftContext.user
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,7 +44,13 @@ class ProfileFragment : Fragment() {
             }.start()
         }
 
-        binding.imgBackground.setImageResource(R.drawable.bitmap_profile_background)
+        binding.profileToolbar.name.text = user.name
+        binding.profileHeader.name.text = user.name
+        binding.profileHeader.signature.text = user.signature
+
+        val uri = resources.openRawResource(R.raw.uri_avatar_def).parseUri()
+        binding.profileHeader.avatar.setImageUriScheme(uri)
+        binding.profileToolbar.avatar.setImageUriScheme(uri)
 
         return binding.root
     }

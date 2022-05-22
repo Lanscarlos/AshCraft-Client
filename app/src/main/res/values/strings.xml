@@ -5,7 +5,13 @@
     <string name="title_cart">购物车</string>
     <string name="title_profile">我的</string>
 
-    <string name="profile_image_description_background">背景图片</string>
+    <string name="title_home_main_title">饿了么</string>
+    <string name="title_home_sub_title">潮流 x 好物</string>
+    <string name="title_home_search">搜索</string>
+    <string name="title_home_search_hint">请输入搜索内容</string>
+
+    <string name="title_profile_name">未登录</string>
+    <string name="title_profile_signature">登录即可解锁特权</string>
 
     <string name="title_profile_star">收藏</string>
     <string name="title_profile_subscribe">订阅</string>
@@ -15,5 +21,7 @@
     <string name="title_profile_order">订单</string>
     <string name="title_profile_service">联系客服</string>
     <string name="title_profile_settings">设置</string>
+
+    <string name="image_profile_background">背景图片</string>
 
 </resources>
