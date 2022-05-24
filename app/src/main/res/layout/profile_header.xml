@@ -28,25 +28,23 @@
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginBottom="4dp"
         android:text="@string/title_profile_name"
+        android:textColor="?attr/colorOnSecondary"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:textColor="?attr/colorOnSecondary"
         app:layout_constraintBottom_toTopOf="@+id/signature"
-        app:layout_constraintEnd_toEndOf="@+id/signature"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/signature" />
+        app:layout_constraintStart_toEndOf="@+id/imageLayout" />
 
     <TextView
         android:id="@+id/signature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginBottom="8dp"
         android:text="@string/title_profile_signature"
         android:textColor="?attr/colorPrimaryDark"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageLayout"
-        app:layout_constraintStart_toEndOf="@+id/imageLayout" />
+        app:layout_constraintStart_toStartOf="@+id/name" />
 </androidx.constraintlayout.widget.ConstraintLayout>

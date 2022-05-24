@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">AshCraft</string>
+    <string name="app_name">鲜叶商城</string>
     <string name="title_home">首页</string>
     <string name="title_chat">消息</string>
     <string name="title_cart">购物车</string>
     <string name="title_profile">我的</string>
 
-    <string name="title_home_main_title">饿了么</string>
+    <string name="title_home_main_title">鲜叶商城</string>
     <string name="title_home_sub_title">潮流 x 好物</string>
     <string name="title_home_search">搜索</string>
     <string name="title_home_search_hint">请输入搜索内容</string>
