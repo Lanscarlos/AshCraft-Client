@@ -1,6 +1,7 @@
 package top.lanscarlos.ashcraft.ui.profile
 
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import top.lanscarlos.ashcraft.AshCraftContext
 import top.lanscarlos.ashcraft.R
 import top.lanscarlos.ashcraft.databinding.FragmentProfileBinding
 import top.lanscarlos.ashcraft.model.ProfileViewModel
+import top.lanscarlos.ashcraft.ui.log.LoginActivity
 import top.lanscarlos.ashcraft.util.*
 
 class ProfileFragment : Fragment() {
@@ -44,6 +46,11 @@ class ProfileFragment : Fragment() {
             }.start()
         }
 
+        val textMoney = binding.profileBody.money
+        viewModel.money.observe(viewLifecycleOwner, true) {
+            textMoney.text = String.format("%.2f", it)
+        }
+
         binding.profileToolbar.name.text = user.name
         binding.profileHeader.name.text = user.name
         binding.profileHeader.signature.text = user.signature
@@ -52,6 +59,15 @@ class ProfileFragment : Fragment() {
 //        binding.profileHeader.avatar.setImageUriScheme(uri)
 //        binding.profileToolbar.avatar.setImageUriScheme(uri)
 
+        binding.profileHeader.avatar.setOnClickListener {
+            startActivity(Intent(requireContext(), LoginActivity::class.java))
+        }
+
         return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

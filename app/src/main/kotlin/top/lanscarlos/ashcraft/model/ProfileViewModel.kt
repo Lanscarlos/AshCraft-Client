@@ -24,6 +24,8 @@ class ProfileViewModel : ViewModel() {
             "114514",
             Date()
         ).fixed())
+
+    val money = mutableLiveOf(user.value.money)
     val collapsed = mutableLiveOf(false)
 
 }

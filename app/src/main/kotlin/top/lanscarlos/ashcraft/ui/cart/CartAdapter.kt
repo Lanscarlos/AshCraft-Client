@@ -21,10 +21,10 @@ class CartAdapter(
     val viewModel: CartViewModel
 ) : RecyclerView.Adapter<CartAdapter.ViewHolder>() {
 
-    val TYPE_ITEMS = 0
-    val TYPE_FOOTER = 1
+    private val TYPE_ITEMS = 0
+    private val TYPE_FOOTER = 1
 
-    val items get() = viewModel.items
+    private val items get() = viewModel.items
 
     override fun getItemViewType(position: Int): Int {
         return if (position == items.size) TYPE_FOOTER else TYPE_ITEMS

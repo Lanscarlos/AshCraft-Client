@@ -11,6 +11,7 @@ fun <T> Call<T>.enqueue(onFailure: ((call: Call<T>, t: Throwable) -> Unit) = { _
             onResponse(call, response)
         }
         override fun onFailure(call: Call<T>, t: Throwable) {
+            t.printStackTrace()
             onFailure(call, t)
         }
     })

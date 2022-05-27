@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="top.lanscarlos.ashcraft">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -13,6 +13,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AshCraft"
         tools:ignore="Instantiatable">
+        <activity
+            android:name=".ui.log.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.log.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.search.SearchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.search.SearchPreviewActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

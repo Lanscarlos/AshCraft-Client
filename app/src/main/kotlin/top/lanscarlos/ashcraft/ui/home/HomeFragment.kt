@@ -3,19 +3,30 @@ package top.lanscarlos.ashcraft.ui.home
 import android.animation.Animator
 import android.animation.TimeInterpolator
 import android.animation.ValueAnimator
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import top.lanscarlos.ashcraft.ui.search.SearchPreviewActivity
 import top.lanscarlos.ashcraft.databinding.FragmentHomeBinding
+import top.lanscarlos.ashcraft.internet.GenericService
 import top.lanscarlos.ashcraft.model.HomeViewModel
-import java.lang.Exception
+import top.lanscarlos.ashcraft.util.enqueue
+import java.io.File
 
 class HomeFragment : Fragment() {
 
@@ -77,6 +88,12 @@ class HomeFragment : Fragment() {
 
         startCycle()
 
+        binding.searchInput.setOnFocusChangeListener { v, hasFocus ->
+            if (!hasFocus) return@setOnFocusChangeListener
+            v.clearFocus()
+            startActivity(Intent(requireContext(), SearchPreviewActivity::class.java))
+        }
+
         return binding.root
     }
 
@@ -125,4 +142,8 @@ class HomeFragment : Fragment() {
         animator.start()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

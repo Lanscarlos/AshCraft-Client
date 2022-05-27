@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorPrimary"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     tools:context=".ui.profile.ProfileFragment">
 
     <ImageView
@@ -83,7 +85,7 @@
                     app:tint="?attr/colorButtonNormal" />
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName"
+                    android:id="@+id/searchInput"
                     android:layout_width="0dp"
                     android:layout_height="36dp"
                     android:layout_gravity="center"
@@ -91,6 +93,7 @@
                     android:layout_marginEnd="8dp"
                     android:background="@color/white"
                     android:ems="10"
+                    android:textSize="16sp"
                     android:hint="@string/title_home_search_hint"
                     android:inputType="text"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView"
@@ -103,12 +106,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="36dp"
                     android:layout_gravity="center_vertical|end"
-                    android:background="@drawable/btn_cart_settle"
+                    android:background="@drawable/btn_standard"
                     android:text="@string/title_home_search"
                     android:textColor="@color/white"
-                    app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName"
+                    app:layout_constraintBottom_toBottomOf="@+id/searchInput"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName" />
+                    app:layout_constraintTop_toTopOf="@+id/searchInput" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.card.MaterialCardView>

@@ -1,8 +1,6 @@
 package top.lanscarlos.ashcraft.craft
 
-import android.util.Log
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import java.lang.NullPointerException
 
@@ -34,7 +32,14 @@ class CraftLiveData<T> : MutableLiveData<T> {
     }
 
     override fun setValue(value: T) {
-        if (this.value == value) return
+        setValue(value, false)
+    }
+
+    /**
+     * 强行写入数据
+     * */
+    fun setValue(value: T, replace: Boolean = false) {
+        if (this.value == value && !replace) return
         super.setValue(value)
     }
 
