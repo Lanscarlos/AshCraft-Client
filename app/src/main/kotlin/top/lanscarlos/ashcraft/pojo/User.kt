@@ -5,10 +5,11 @@ import top.lanscarlos.ashcraft.remote.RemoteUser
 
 class User(
     remote: RemoteUser
-) {
+) : Nameable {
 
+    val id = remote.id
     val avatar: Bitmap? = null
-    val name = remote.name
+    override val name = remote.name
     val signature = remote.signature
     val gender = remote.gender
     val money = remote.money

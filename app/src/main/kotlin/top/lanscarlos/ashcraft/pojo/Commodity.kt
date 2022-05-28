@@ -1,15 +1,16 @@
 package top.lanscarlos.ashcraft.pojo
 
+import android.graphics.Bitmap
 import top.lanscarlos.ashcraft.remote.RemoteCommodity
 
 class Commodity(
     remote: RemoteCommodity
-) {
+) : Nameable {
 
-    val name = remote.name
-    val lore = remote.introduce
+    override val name = remote.name
+    val lore = remote.description
     val price = remote.price
-    val image = remote.image
+    var image: Bitmap? = null
     val storage = remote.storage
     val category = remote.category
     val shop = remote.seller

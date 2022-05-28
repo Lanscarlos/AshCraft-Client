@@ -24,7 +24,7 @@ class ProfileFragment : Fragment() {
 
     private val viewModel: ProfileViewModel by viewModels()
 
-    private val user get() = viewModel.user.value
+    private val user get() = viewModel.user
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,13 +51,9 @@ class ProfileFragment : Fragment() {
             textMoney.text = String.format("%.2f", it)
         }
 
-        binding.profileToolbar.name.text = user.name
-        binding.profileHeader.name.text = user.name
-        binding.profileHeader.signature.text = user.signature
-//
-//        val uri = resources.openRawResource(R.raw.uri_avatar_def).parseUri()
-//        binding.profileHeader.avatar.setImageUriScheme(uri)
-//        binding.profileToolbar.avatar.setImageUriScheme(uri)
+        binding.profileToolbar.name.text = user?.name ?: "请登录"
+        binding.profileHeader.name.text = user?.name ?: "请登录"
+        binding.profileHeader.signature.text = user?.signature ?: "登录即可享受特权"
 
         binding.profileHeader.avatar.setOnClickListener {
             startActivity(Intent(requireContext(), LoginActivity::class.java))

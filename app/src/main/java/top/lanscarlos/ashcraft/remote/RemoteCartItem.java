@@ -7,6 +7,9 @@ public class RemoteCartItem {
     private int amount;
     private double totalPrice;
 
+    public RemoteCartItem() {
+    }
+
     public RemoteCartItem(int id, RemoteCommodity commodity, int amount, double totalPrice) {
         this.id = id;
         this.commodity = commodity;
@@ -44,5 +47,15 @@ public class RemoteCartItem {
 
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    @Override
+    public String toString() {
+        return "RemoteCartItem{" +
+                "id=" + id +
+                ", commodity=" + commodity +
+                ", amount=" + amount +
+                ", totalPrice=" + totalPrice +
+                '}';
     }
 }

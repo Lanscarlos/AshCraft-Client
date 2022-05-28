@@ -29,27 +29,36 @@ class SearchPreviewActivity : AppCompatActivity() {
         _binding = ActivitySearchPreviewBinding.inflate(layoutInflater, null, false)
         setContentView(binding.root)
 
-        val adapter = SearchPreviewAdapter(viewModel)
+        val adapter = SearchPreviewAdapter(this, viewModel)
         binding.items.adapter = adapter
         val divider = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
         divider.setDrawable(ContextCompat.getDrawable(this, R.drawable.divider_search)!!)
         binding.items.addItemDecoration(divider)
 
         val searchInput = binding.searchInput
-        searchInput.hint = viewModel.result.random()
+        searchInput.hint = viewModel.commodities.randomOrNull()?.name ?: ""
         searchInput.addTextChangedListener {
             viewModel.setInput(it?.toString()?.trim() ?: "")
         }
 
         binding.btnSearch.setOnClickListener {
-            startActivity(Intent(this, SearchActivity::class.java).apply {
-                putExtra("search", searchInput.text.toString())
-            })
+            val keyword = if (searchInput.text.toString().trim().isNotEmpty()) {
+                searchInput.text.toString()
+            } else {
+                searchInput.hint.toString()
+            }
+            gotoSearchResult(keyword)
         }
 
         viewModel.tips.observe(this, true) {
             adapter.notifyDataSetChanged()
         }
+    }
+
+    fun gotoSearchResult(keyword: String) {
+        startActivity(Intent(this, SearchResultActivity::class.java).apply {
+            putExtra("search", keyword)
+        })
     }
 
     override fun onDestroy() {

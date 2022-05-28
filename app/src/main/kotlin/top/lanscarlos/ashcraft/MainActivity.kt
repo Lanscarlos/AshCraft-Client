@@ -12,6 +12,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import kotlinx.coroutines.*
 import top.lanscarlos.ashcraft.craft.CraftFragmentNavigator
 import top.lanscarlos.ashcraft.databinding.ActivityMainBinding
+import top.lanscarlos.ashcraft.repository.UserRepository
 
 class MainActivity : AppCompatActivity() {
 

@@ -51,9 +51,7 @@ class CartAdapter(
                 holder.name.text = item.name
                 holder.price.text = item.price.toString()
                 holder.selected.isChecked = viewModel.isAllSelected.value
-                items[index].image.toUri().accessBitmap {
-                    holder.image.setImageBitmap(it)
-                }
+                item.image?.let { holder.image.setImageBitmap(it) }
 
                 holder.selected.setOnCheckedChangeListener { _, selected ->
                     viewModel.selectItem(holder.index, selected)

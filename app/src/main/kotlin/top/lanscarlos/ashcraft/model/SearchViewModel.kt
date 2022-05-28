@@ -1,17 +1,17 @@
 package top.lanscarlos.ashcraft.model
 
 import androidx.lifecycle.ViewModel
+import top.lanscarlos.ashcraft.pojo.Nameable
+import top.lanscarlos.ashcraft.repository.CommodityRepository
+import top.lanscarlos.ashcraft.repository.ShopRepository
 import top.lanscarlos.ashcraft.util.mutableLiveOf
 
 class SearchViewModel : ViewModel() {
 
-    val result = listOf(
-        "派蒙杯",
-        "派蒙手办",
-        "派蒙画像",
-        "板栗粽子",
-        "绿豆雪糕"
-    )
+    val commodities = mutableListOf<Nameable>().apply {
+        addAll(CommodityRepository.commodities)
+        addAll(ShopRepository.shops)
+    }
 
     /*
     * 搜索提示
@@ -30,8 +30,8 @@ class SearchViewModel : ViewModel() {
      * */
     fun getSearchTips(input: String): List<String> {
         if (input.isEmpty()) return listOf()
-        return result.mapNotNull {
-            if (it.startsWith(input)) it else null
+        return commodities.mapNotNull {
+            if (it.name.startsWith(input)) it.name else null
         }
     }
 

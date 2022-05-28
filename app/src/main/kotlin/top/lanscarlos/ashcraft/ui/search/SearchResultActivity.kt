@@ -6,11 +6,14 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import top.lanscarlos.ashcraft.AshCraftContext
-import top.lanscarlos.ashcraft.databinding.ActivitySearchBinding
+import top.lanscarlos.ashcraft.databinding.ActivitySearchResultBinding
+import top.lanscarlos.ashcraft.pojo.Nameable
+import top.lanscarlos.ashcraft.repository.CommodityRepository
+import top.lanscarlos.ashcraft.repository.ShopRepository
 
-class SearchActivity : AppCompatActivity() {
+class SearchResultActivity : AppCompatActivity() {
 
-    private var _binding: ActivitySearchBinding? = null
+    private var _binding: ActivitySearchResultBinding? = null
     private val binding get() = _binding!!
 
     private val tabsTitle = listOf("全部", "商品", "店铺")
@@ -22,14 +25,24 @@ class SearchActivity : AppCompatActivity() {
         }
         setTheme(AshCraftContext.theme.value)
 
-        _binding = ActivitySearchBinding.inflate(layoutInflater, null, false)
+        _binding = ActivitySearchResultBinding.inflate(layoutInflater, null, false)
         setContentView(binding.root)
+
+        val data = mutableListOf<Nameable>().apply {
+            addAll(CommodityRepository.commodities)
+            addAll(ShopRepository.shops)
+        }
+
+        val search = intent?.getStringExtra("search")
+        val result = data.filter {
+            if (search!= null) it.name.startsWith(search) else true
+        }
 
         val viewPager = binding.viewPager
         viewPager.adapter = object : FragmentStateAdapter(this) {
             override fun getItemCount(): Int = tabsTitle.size
             override fun createFragment(position: Int): Fragment {
-                return SearchResultFragment(tabsTitle[position])
+                return SearchResultFragment(position, result)
             }
         }
 
@@ -40,6 +53,15 @@ class SearchActivity : AppCompatActivity() {
         // tabs & viewPager 联动
         mediator.attach()
 
+        binding.back.setOnClickListener {
+            finish()
+        }
+
         binding.searchInput.setText(intent.getStringExtra("search") ?: "")
+        binding.searchInput.setOnFocusChangeListener { v, hasFocus ->
+            if (!hasFocus) return@setOnFocusChangeListener
+            v.clearFocus()
+            finish()
+        }
     }
 }

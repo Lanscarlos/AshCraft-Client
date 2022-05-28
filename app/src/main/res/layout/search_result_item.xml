@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="72dp"
+    android:layout_height="128dp"
     android:clickable="true"
     android:focusable="true"
     app:cardElevation="0dp"
@@ -16,9 +16,9 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/materialCardView4"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:layout_marginStart="8dp"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_marginStart="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -46,7 +46,9 @@
             android:id="@+id/itemLore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="8dp"
+            android:maxLines="2"
+            android:maxWidth="196dp"
             android:text="简介"
             app:layout_constraintStart_toStartOf="@+id/itemName"
             app:layout_constraintTop_toBottomOf="@+id/itemName" />
@@ -55,18 +57,20 @@
             android:id="@+id/itemPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
             android:text="0.00"
             android:textColor="?attr/colorError"
-            android:textSize="18sp"
+            android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/itemShop" />
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
             android:id="@+id/itemUnit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="2dp"
+            android:layout_marginBottom="4dp"
             android:text="¥"
             android:textColor="?attr/colorError"
             app:layout_constraintBottom_toBottomOf="@+id/itemPrice"
@@ -76,21 +80,34 @@
             android:id="@+id/itemShop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginBottom="6dp"
             android:text="小黑店"
-            app:layout_constraintEnd_toStartOf="@+id/imageView15"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toBottomOf="@+id/itemPrice"
+            app:layout_constraintEnd_toStartOf="@+id/imageView15" />
 
         <ImageView
             android:id="@+id/imageView15"
             android:layout_width="16dp"
             android:layout_height="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/itemShop"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/itemUnit"
             app:layout_constraintTop_toTopOf="@+id/itemShop"
             app:srcCompat="@drawable/bitmap_arrow_right"
             app:tint="?attr/colorPrimaryDark" />
+
+        <TextView
+            android:id="@+id/itemType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_type"
+            android:paddingHorizontal="5dp"
+            android:paddingVertical="2dp"
+            android:text="类别"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/itemName"
+            app:layout_constraintEnd_toEndOf="@+id/itemPrice" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

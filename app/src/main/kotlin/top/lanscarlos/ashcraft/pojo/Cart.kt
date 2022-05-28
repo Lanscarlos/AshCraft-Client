@@ -8,7 +8,6 @@ class Cart(
     remote: RemoteCart
 ) {
 
-    val user = remote.user.fixed()
     val items: List<CartItem> = remote.items.map { it.fixed() }.toList()
     var totalPrice = remote.totalPrice
 

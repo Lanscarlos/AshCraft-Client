@@ -13,9 +13,12 @@ public class RemoteUser {
     private double money;
     private String address;
     private String phone;
-    private Date regTime;
+    private long regTime;
 
-    public RemoteUser(int id, int gender, String avatar, String name, String signature, String password, double money, String address, String phone, Date regTime) {
+    public RemoteUser() {
+    }
+
+    public RemoteUser(int id, int gender, String avatar, String name, String signature, String password, double money, String address, String phone, long regTime) {
         this.id = id;
         this.gender = gender;
         this.avatar = avatar;
@@ -100,11 +103,27 @@ public class RemoteUser {
         this.phone = phone;
     }
 
-    public Date getRegTime() {
+    public long getRegTime() {
         return regTime;
     }
 
-    public void setRegTime(Date regTime) {
+    public void setRegTime(long regTime) {
         this.regTime = regTime;
+    }
+
+    @Override
+    public String toString() {
+        return "RemoteUser{" +
+                "id=" + id +
+                ", gender=" + gender +
+                ", avatar='" + avatar + '\'' +
+                ", name='" + name + '\'' +
+                ", signature='" + signature + '\'' +
+                ", password='" + password + '\'' +
+                ", money=" + money +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", regTime=" + regTime +
+                '}';
     }
 }

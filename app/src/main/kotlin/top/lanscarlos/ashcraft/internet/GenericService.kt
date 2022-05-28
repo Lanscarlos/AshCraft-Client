@@ -34,7 +34,7 @@ interface GenericService {
 
     companion object {
 
-        private val services by lazy {
+        val services by lazy {
             BaseUrl.values.associate {
                 it to Retrofit.Builder().apply {
                     baseUrl(it)
@@ -64,7 +64,7 @@ interface GenericService {
             val call = path?.let { getService(baseUrl).getResponse(it) } ?: throw NullPointerException("Base url must not be null")
             call.enqueue { _, response ->
                 val body = response.body() ?: throw NullPointerException("body must not be null")
-                val stream = response.body()?.byteStream() ?: throw NullPointerException("stream must not be null")
+                val stream = body.byteStream() ?: throw NullPointerException("stream must not be null")
                 val bitmap = BitmapFactory.decodeStream(stream)
                 func(bitmap)
             }

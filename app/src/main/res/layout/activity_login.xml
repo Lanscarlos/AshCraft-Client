@@ -27,7 +27,7 @@
     </com.google.android.material.card.MaterialCardView>
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/inputPhone"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginStart="32dp"
@@ -43,7 +43,7 @@
         app:layout_constraintTop_toBottomOf="@+id/materialCardView5" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/inputPassword"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
@@ -52,12 +52,12 @@
         android:hint="请输入密码"
         android:inputType="textPassword"
         android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintEnd_toEndOf="@+id/inputPhone"
+        app:layout_constraintStart_toStartOf="@+id/inputPhone"
+        app:layout_constraintTop_toBottomOf="@+id/inputPhone" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -66,9 +66,9 @@
         android:background="@drawable/btn_standard"
         android:text="登录"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPassword"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPassword"
-        app:layout_constraintTop_toBottomOf="@+id/textRegister" />
+        app:layout_constraintEnd_toEndOf="@+id/inputPassword"
+        app:layout_constraintStart_toStartOf="@+id/inputPassword"
+        app:layout_constraintTop_toBottomOf="@+id/gotoRegister" />
 
     <CheckBox
         android:id="@+id/checkBox"
@@ -76,8 +76,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPassword"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+        app:layout_constraintStart_toStartOf="@+id/inputPassword"
+        app:layout_constraintTop_toBottomOf="@+id/inputPassword" />
 
     <TextView
         android:id="@+id/textView17"
@@ -115,14 +115,14 @@
         app:layout_constraintStart_toEndOf="@+id/textView19" />
 
     <TextView
-        android:id="@+id/textRegister"
+        android:id="@+id/gotoRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:textColor="#4e87d5"
         android:text="没有账号？点我注册！"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPassword"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPassword"
+        app:layout_constraintEnd_toEndOf="@+id/inputPassword"
+        app:layout_constraintStart_toStartOf="@+id/inputPassword"
         app:layout_constraintTop_toBottomOf="@+id/checkBox" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

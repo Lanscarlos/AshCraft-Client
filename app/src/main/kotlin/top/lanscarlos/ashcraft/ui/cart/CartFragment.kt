@@ -80,8 +80,10 @@ class CartFragment : Fragment() {
                 requireActivity().theme.resolveAttribute(com.google.android.material.R.attr.colorPrimary, it, true)
             }.data)
             setOnRefreshListener {
-                adapter.notifyDataSetChanged()
-                isRefreshing = false
+                viewModel.refresh {
+                    adapter.notifyDataSetChanged()
+                    isRefreshing = false
+                }
             }
         }
 

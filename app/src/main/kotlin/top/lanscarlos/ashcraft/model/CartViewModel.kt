@@ -18,14 +18,22 @@ class CartViewModel : ViewModel() {
     val isAllSelected = mutableLiveOf(false)
 
     private val repository = CartRepository
-    private val cart = repository.cart
-    private val _items = cart.items.toMutableList()
+    private var cart = repository.cart
+    private val _items = cart?.items?.toMutableList()
 
-    val items: List<CartItem> get() = _items
+    val items: List<CartItem> get() = _items!!
     val itemCount = mutableLiveOf(items.size)
-    val totalPrice = mutableLiveOf(cart.totalPrice)
+    val totalPrice = mutableLiveOf(cart?.totalPrice ?: 0.0)
+
+    fun refresh(onResponse: () -> Unit) {
+        repository.tryAccessData {
+            cart = it
+            onResponse()
+        }
+    }
 
     fun selectItem(index: Int, selected: Boolean) {
+        val cart = this.cart ?: return
         if (silentSelecting.value || index !in items.indices) return
         val item = items[index]
         if (selected) {
@@ -52,6 +60,7 @@ class CartViewModel : ViewModel() {
     }
 
     fun selectAll(selected: Boolean) {
+        val cart = this.cart ?: return
 
         /*
         * 阻断事件重复回传
@@ -83,6 +92,7 @@ class CartViewModel : ViewModel() {
     }
 
     fun removeItem(index: Int) {
+        val cart = this.cart ?: return
         if (index !in items.indices) return
         val item = items[index]
         if (item.selected) {
@@ -92,7 +102,7 @@ class CartViewModel : ViewModel() {
         }
         itemCount.value -= 1
 
-        _items.removeAt(index)
+        _items!!.removeAt(index)
 
         /*
         *
@@ -103,6 +113,7 @@ class CartViewModel : ViewModel() {
     }
 
     fun increaseItemAmount(index: Int): Int {
+        val cart = this.cart ?: return -1
         if (index !in items.indices) return -1
         val item = items[index]
 
@@ -127,6 +138,7 @@ class CartViewModel : ViewModel() {
     }
 
     fun decreaseItemAmount(index: Int): Int {
+        val cart = this.cart ?: return -1
         if (index !in items.indices) return -1
         val item = items[index]
 

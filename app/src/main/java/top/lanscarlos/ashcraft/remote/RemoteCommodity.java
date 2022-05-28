@@ -4,17 +4,20 @@ public class RemoteCommodity {
 
     private int id;
     private String name;
-    private String introduce;
+    private String description;
     private double price;
     private int storage;
     private String image;
     private String category;
-    private RemoteSeller seller;
+    private RemoteShop seller;
 
-    public RemoteCommodity(int id, String name, String introduce, double price, int storage, String image, String category, RemoteSeller seller) {
+    public RemoteCommodity() {
+    }
+
+    public RemoteCommodity(int id, String name, String introduce, double price, int storage, String image, String category, RemoteShop seller) {
         this.id = id;
         this.name = name;
-        this.introduce = introduce;
+        this.description = introduce;
         this.price = price;
         this.storage = storage;
         this.image = image;
@@ -38,12 +41,12 @@ public class RemoteCommodity {
         this.name = name;
     }
 
-    public String getIntroduce() {
-        return introduce;
+    public String getDescription() {
+        return description;
     }
 
-    public void setIntroduce(String introduce) {
-        this.introduce = introduce;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public double getPrice() {
@@ -78,11 +81,25 @@ public class RemoteCommodity {
         this.category = category;
     }
 
-    public RemoteSeller getSeller() {
+    public RemoteShop getSeller() {
         return seller;
     }
 
-    public void setSeller(RemoteSeller seller) {
+    public void setSeller(RemoteShop seller) {
         this.seller = seller;
+    }
+
+    @Override
+    public String toString() {
+        return "RemoteCommodity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", introduce='" + description + '\'' +
+                ", price=" + price +
+                ", storage=" + storage +
+                ", image='" + image + '\'' +
+                ", category='" + category + '\'' +
+                ", seller=" + seller +
+                '}';
     }
 }
