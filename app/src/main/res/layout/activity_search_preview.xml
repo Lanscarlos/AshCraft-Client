@@ -6,17 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".ui.search.SearchPreviewActivity">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardView3"
-        android:layout_width="match_parent"
-        android:layout_height="36dp"
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        app:cardCornerRadius="18dp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bitmap_arrow_left" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView3"
+        android:layout_width="0dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="8dp"
+        app:cardCornerRadius="18dp"
+        app:layout_constraintBottom_toBottomOf="@+id/back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/back"
+        app:layout_constraintTop_toTopOf="@+id/back"
         app:strokeColor="?attr/colorPrimary"
         app:strokeWidth="1dp">
 
@@ -44,9 +54,9 @@
                 android:layout_marginEnd="8dp"
                 android:background="@color/white"
                 android:ems="10"
-                android:textSize="16sp"
                 android:hint="@string/title_home_search_hint"
                 android:inputType="text"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView"
                 app:layout_constraintEnd_toStartOf="@+id/btnSearch"
                 app:layout_constraintStart_toEndOf="@+id/imageView"

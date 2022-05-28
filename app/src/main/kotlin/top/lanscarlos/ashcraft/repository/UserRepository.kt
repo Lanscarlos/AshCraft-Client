@@ -29,8 +29,8 @@ object UserRepository {
     var rememberLog: Pair<String, String>?
         get() {
             val pref = AshCraftContext.context.getSharedPreferences("log", Context.MODE_PRIVATE)
-            val phone = pref.getString("PHONE", "12191")
-            val password = pref.getString("PASSWORD", "10088")
+            val phone = pref.getString("PHONE", null)
+            val password = pref.getString("PASSWORD", null)
             return if (phone != null && password != null) {
                 phone to password
             } else null
@@ -53,18 +53,48 @@ object UserRepository {
 
     fun tryAutoLogin() {
         val info = rememberLog ?: return
-        service.login(info.first, info.second).enqueue { _, response ->
+        tryLogin(info.first, info.second) {
+            if (it == null) return@tryLogin
+            // 通知购物车系统获取数据
+            CartRepository
+        }
+    }
+
+    fun tryLogin(phone: String, password: String, onResponse: (User?) -> Unit = {}) {
+        service.login(phone, password).enqueue(onFailure = { _, _ ->
+            onResponse(null)
+        }) { _, response ->
             val stream = response.body()?.byteStream() ?: throw NullPointerException("byteStream is null")
             val json = stream.asString().parseJson<JsonObject>()
             if (!json.get("result").asBoolean) return@enqueue
             when (json.get("type").asString) {
                 "user" -> {
                     user = json.get("user").parse<RemoteUser>().fixed()
-                    // 通知购物车系统获取数据
-                    CartRepository
+                    rememberLog = phone to password
+                    CartRepository.refresh()
+                    onResponse(user)
                 }
             }
         }
+    }
+
+    fun tryRegister(phone: String, name: String, password: String, onResponse: (User?) -> Unit = {}) {
+        service.register(
+            phone, name, password,
+            signature = "这个人很懒什么也没写~",
+            address = "日内瓦",
+            money = (0..10000).random().toDouble()
+        ).enqueue(onFailure = { _, _ ->
+            onResponse(null)
+        }) { _, response ->
+            rememberLog = phone to password
+            onResponse(response.body()?.fixed())
+        }
+    }
+
+    fun logout() {
+        user = null
+        CartRepository.refresh()
     }
 
     private fun analogInit() {

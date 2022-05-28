@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="128dp"
+    android:layout_height="128dp"
+    android:backgroundTint="#9000"
+    app:cardCornerRadius="5dp">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="center"/>
+
+</com.google.android.material.card.MaterialCardView>

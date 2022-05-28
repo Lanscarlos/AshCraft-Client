@@ -6,28 +6,44 @@
     android:layout_height="match_parent"
     tools:context=".ui.log.RegisterActivity">
 
-    <com.google.android.material.card.MaterialCardView
+    <FrameLayout
         android:id="@+id/materialCardView8"
         android:layout_width="128dp"
         android:layout_height="128dp"
-        android:layout_marginTop="48dp"
-        app:cardCornerRadius="64dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/imageView16"
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="128dp"
             android:layout_height="128dp"
-            app:srcCompat="@drawable/bitmap_avatar"
-            tools:layout_editor_absoluteX="136dp"
-            tools:layout_editor_absoluteY="137dp" />
+            app:cardCornerRadius="64dp">
 
-    </com.google.android.material.card.MaterialCardView>
+            <ImageView
+                android:id="@+id/avatar"
+                android:layout_width="128dp"
+                android:layout_height="128dp"
+                app:srcCompat="@drawable/bitmap_avatar"
+                tools:layout_editor_absoluteX="136dp"
+                tools:layout_editor_absoluteY="137dp" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/imageView18"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/materialCardView8"
+        app:layout_constraintEnd_toEndOf="@+id/materialCardView8"
+        app:srcCompat="@drawable/bitmap_camera_switching"
+        app:tint="?attr/colorPrimaryDark" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/inputPhone"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginStart="32dp"
@@ -36,28 +52,42 @@
         android:background="@drawable/bg_login_input"
         android:ems="10"
         android:hint="请输入手机号"
-        android:inputType="textPersonName"
+        android:inputType="phone"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialCardView8" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/inputName"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/bg_login_input"
         android:ems="10"
+        android:inputType="text"
+        android:hint="请输入昵称"
         android:textAlignment="center"
-        android:hint="请输入密码"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName2"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName2"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+        app:layout_constraintEnd_toEndOf="@+id/inputPhone"
+        app:layout_constraintStart_toStartOf="@+id/inputPhone"
+        app:layout_constraintTop_toBottomOf="@+id/inputPhone" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName4"
+        android:id="@+id/inputPassword"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_login_input"
+        android:ems="10"
+        android:hint="请输入密码"
+        android:inputType="textPassword"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/inputName"
+        app:layout_constraintStart_toStartOf="@+id/inputName"
+        app:layout_constraintTop_toBottomOf="@+id/inputName" />
+
+    <EditText
+        android:id="@+id/confirmPassword"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
@@ -65,28 +95,28 @@
         android:ems="10"
         android:textAlignment="center"
         android:hint="请再次输入密码"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName3"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName3"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/inputPassword"
+        app:layout_constraintStart_toStartOf="@+id/inputPassword"
+        app:layout_constraintTop_toBottomOf="@+id/inputPassword" />
 
     <CheckBox
-        android:id="@+id/checkBox2"
+        android:id="@+id/checkBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName4"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
+        app:layout_constraintStart_toStartOf="@+id/confirmPassword"
+        app:layout_constraintTop_toBottomOf="@+id/confirmPassword" />
 
     <TextView
         android:id="@+id/textView22"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="已阅读并同意"
-        app:layout_constraintBottom_toBottomOf="@+id/checkBox2"
-        app:layout_constraintStart_toEndOf="@+id/checkBox2"
-        app:layout_constraintTop_toTopOf="@+id/checkBox2" />
+        app:layout_constraintBottom_toBottomOf="@+id/checkBox"
+        app:layout_constraintStart_toEndOf="@+id/checkBox"
+        app:layout_constraintTop_toTopOf="@+id/checkBox" />
 
     <TextView
         android:id="@+id/textView24"
@@ -115,17 +145,17 @@
         app:layout_constraintStart_toEndOf="@+id/textView21" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/register"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/btn_standard"
         android:text="注册"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName4"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName4"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
+        app:layout_constraintEnd_toEndOf="@+id/confirmPassword"
+        app:layout_constraintStart_toStartOf="@+id/confirmPassword"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

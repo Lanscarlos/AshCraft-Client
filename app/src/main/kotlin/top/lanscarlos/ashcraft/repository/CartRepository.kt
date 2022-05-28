@@ -26,6 +26,8 @@ object CartRepository {
 
     val items get() = cart?.items
 
+    var onChangedListener: ((Cart?) -> Unit)? = null
+
     init {
         Log.d("Ash", "init cart")
         tryAccessData()
@@ -34,9 +36,26 @@ object CartRepository {
     fun tryAccessData(onResponse: (Cart?) -> Unit = {}) {
         val userId = UserRepository.user?.id ?: return
         service.getCart(userId).enqueue { _, response ->
-            cart = response.body()?.also { Log.d("Ash", "cart -> $it") }?.fixed()
+            cart = response.body()?.fixed()
             onResponse(cart)
+            onChangedListener?.let { it(cart) }
         }
+    }
+
+    fun refresh() {
+        val userId = UserRepository.user?.id
+        if (userId == null) {
+            onChangedListener?.let { it(cart) }
+            return
+        }
+        service.getCart(userId).enqueue { _, response ->
+            cart = response.body()?.fixed()
+            onChangedListener?.let { it(cart) }
+        }
+    }
+
+    fun setOnChanged(onChanged: ((Cart?) -> Unit)?) {
+        onChangedListener = onChanged
     }
 
     private fun analogInit() {

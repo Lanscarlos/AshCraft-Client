@@ -15,6 +15,9 @@
         android:theme="@style/Theme.AshCraft"
         tools:ignore="Instantiatable">
         <activity
+            android:name=".LoadingActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.log.RegisterActivity"
             android:exported="false" />
         <activity
