@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.commodity.CommodityActivity">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="48dp"
+        android:scaleType="fitStart"
+        android:src="@drawable/bitmap_404"
+        tools:layout_editor_absoluteX="56dp"
+        tools:layout_editor_absoluteY="61dp" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="48dp"
+        android:layout_marginBottom="60dp"
+        android:fillViewport="true"
+        android:overScrollMode="never">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="348dp"
+            android:background="@drawable/corners_16dp">
+
+            <TextView
+                android:id="@+id/commodityName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="商品"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/commodityLore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="简介"
+                app:layout_constraintStart_toStartOf="@+id/commodityName"
+                app:layout_constraintTop_toBottomOf="@+id/commodityName" />
+
+            <TextView
+                android:id="@+id/textView32"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="2dp"
+                android:layout_marginBottom="4dp"
+                android:text="¥"
+                android:textColor="?attr/colorError"
+                app:layout_constraintBottom_toBottomOf="@+id/commodityPrice"
+                app:layout_constraintEnd_toStartOf="@+id/commodityPrice" />
+
+            <TextView
+                android:id="@+id/commodityPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="28dp"
+                android:text="2499.00"
+                android:textColor="?attr/colorError"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="@+id/commodityLore"
+                app:layout_constraintTop_toBottomOf="@+id/commodityLore" />
+
+            <TextView
+                android:id="@+id/textView33"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="件"
+                app:layout_constraintBottom_toBottomOf="@+id/textView34"
+                app:layout_constraintEnd_toEndOf="@+id/commodityTag"
+                app:layout_constraintTop_toTopOf="@+id/textView34" />
+
+            <TextView
+                android:id="@+id/textView34"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="6dp"
+                android:text="剩余库存"
+                app:layout_constraintBottom_toBottomOf="@+id/commodityPrice"
+                app:layout_constraintEnd_toStartOf="@+id/commodityStorage" />
+
+            <TextView
+                android:id="@+id/commodityStorage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:text="99"
+                app:layout_constraintBottom_toBottomOf="@+id/textView34"
+                app:layout_constraintEnd_toStartOf="@+id/textView33"
+                app:layout_constraintTop_toTopOf="@+id/textView34" />
+
+            <TextView
+                android:id="@+id/commodityTag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/shape_type"
+                android:paddingHorizontal="5dp"
+                android:paddingVertical="2dp"
+                android:text="类别"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/commodityName"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="36dp"
+                android:layout_marginEnd="16dp"
+                android:background="#4000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/commodityPrice" />
+
+            <ImageView
+                android:id="@+id/shopAvatar"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginTop="36dp"
+                android:src="@drawable/bitmap_404"
+                app:layout_constraintStart_toStartOf="@+id/commodityName"
+                app:layout_constraintTop_toBottomOf="@+id/view" />
+
+            <TextView
+                android:id="@+id/shopName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="店铺"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@+id/shopAvatar"
+                app:layout_constraintTop_toTopOf="@+id/shopAvatar" />
+
+            <TextView
+                android:id="@+id/shopLore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="简介"
+                app:layout_constraintStart_toStartOf="@+id/shopName"
+                app:layout_constraintTop_toBottomOf="@+id/shopName" />
+
+            <RatingBar
+                android:id="@+id/rating"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView40"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textView40" />
+
+            <TextView
+                android:id="@+id/textView40"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:text="评分"
+                app:layout_constraintBottom_toBottomOf="@+id/shopName"
+                app:layout_constraintEnd_toStartOf="@+id/rating" />
+
+            <TextView
+                android:id="@+id/shopTag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="十年老店"
+                app:layout_constraintBottom_toBottomOf="@+id/shopAvatar"
+                app:layout_constraintEnd_toStartOf="@+id/imageView19" />
+
+            <ImageView
+                android:id="@+id/imageView19"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/shopTag"
+                app:layout_constraintEnd_toEndOf="@+id/rating"
+                app:layout_constraintTop_toTopOf="@+id/shopTag"
+                app:srcCompat="@drawable/bitmap_arrow_right" />
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/shopAvatar" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="#fafafa">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_gravity="start"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/bitmap_arrow_left"
+            app:layout_constraintBottom_toBottomOf="@+id/commodityTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/commodityTitle" />
+
+        <TextView
+            android:id="@+id/commodityTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="标题"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/commodityShare"
+            app:layout_constraintStart_toEndOf="@+id/back"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/commodityShare"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_gravity="end"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/bitmap_share"
+            app:layout_constraintBottom_toBottomOf="@+id/commodityTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/commodityTitle" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom"
+        android:background="#fafafa">
+
+        <Button
+            android:id="@+id/addToCart"
+            android:layout_width="128dp"
+            android:layout_height="36dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/btn_standard"
+            android:text="加入购物车"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/comments"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/bitmap_comments"
+            app:tint="?attr/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="@+id/like"
+            app:layout_constraintStart_toEndOf="@+id/store"
+            app:layout_constraintTop_toTopOf="@+id/like" />
+
+        <ImageView
+            android:id="@+id/star"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/icon_collection"
+            app:tint="?attr/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="@+id/addToCart"
+            app:layout_constraintEnd_toStartOf="@+id/addToCart"
+            app:layout_constraintTop_toTopOf="@+id/addToCart" />
+
+        <ImageView
+            android:id="@+id/like"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/icon_good"
+            app:layout_constraintBottom_toBottomOf="@+id/star"
+            app:layout_constraintEnd_toStartOf="@+id/star"
+            app:layout_constraintTop_toTopOf="@+id/star"
+            app:layout_constraintVertical_bias="0.0"
+            app:tint="?attr/colorPrimary" />
+
+        <ImageView
+            android:id="@+id/store"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/bitmap_store"
+            app:tint="?attr/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="@+id/like"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/like" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

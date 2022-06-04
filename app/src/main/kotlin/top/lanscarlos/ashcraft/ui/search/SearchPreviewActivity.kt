@@ -41,6 +41,7 @@ class SearchPreviewActivity : AppCompatActivity() {
 
         // 搜索框事件处理
         val searchInput = binding.searchInput
+        searchInput.setText(intent?.getStringExtra("keyword") ?: "")
         searchInput.hint = viewModel.commodities.randomOrNull()?.name ?: ""
         searchInput.addTextChangedListener {
             viewModel.setInput(it?.toString()?.trim() ?: "")
@@ -67,10 +68,12 @@ class SearchPreviewActivity : AppCompatActivity() {
         }
     }
 
+
     fun gotoSearchResult(keyword: String) {
         startActivity(Intent(this, SearchResultActivity::class.java).apply {
-            putExtra("search", keyword)
+            putExtra("keyword", keyword)
         })
+        binding.searchInput.setText(keyword)
     }
 
     override fun onDestroy() {

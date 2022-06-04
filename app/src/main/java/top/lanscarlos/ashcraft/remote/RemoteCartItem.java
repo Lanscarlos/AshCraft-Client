@@ -3,6 +3,7 @@ package top.lanscarlos.ashcraft.remote;
 public class RemoteCartItem {
 
     private int id;
+    private boolean selected;
     private RemoteCommodity commodity;
     private int amount;
     private double totalPrice;
@@ -23,6 +24,14 @@ public class RemoteCartItem {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
     }
 
     public RemoteCommodity getCommodity() {

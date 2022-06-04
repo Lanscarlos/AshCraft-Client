@@ -25,6 +25,7 @@ import top.lanscarlos.ashcraft.ui.search.SearchPreviewActivity
 import top.lanscarlos.ashcraft.databinding.FragmentHomeBinding
 import top.lanscarlos.ashcraft.internet.GenericService
 import top.lanscarlos.ashcraft.model.HomeViewModel
+import top.lanscarlos.ashcraft.ui.search.SearchResultActivity
 import top.lanscarlos.ashcraft.util.enqueue
 import java.io.File
 
@@ -92,6 +93,12 @@ class HomeFragment : Fragment() {
             if (!hasFocus) return@setOnFocusChangeListener
             v.clearFocus()
             startActivity(Intent(requireContext(), SearchPreviewActivity::class.java))
+        }
+
+        binding.btnSearch.setOnClickListener {
+            startActivity(Intent(requireContext(), SearchResultActivity::class.java).apply {
+                putExtra("keyword", "所有商品")
+            })
         }
 
         return binding.root

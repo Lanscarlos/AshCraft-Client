@@ -60,8 +60,12 @@ class LoginActivity : AppCompatActivity() {
                 CoroutineScope(Dispatchers.Main).launch {
                     delay(500)
                     dialog.dismiss()
-                    setResult(RESULT_OK)
-                    finish()
+                    if (it != null) {
+                        finish()
+                    } else {
+                        // 登陆失败
+                        "用户名或密码错误".showToast()
+                    }
                 }
             }
         }

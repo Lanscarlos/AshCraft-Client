@@ -15,7 +15,13 @@
         android:theme="@style/Theme.AshCraft"
         tools:ignore="Instantiatable">
         <activity
-            android:name=".LoadingActivity"
+            android:name=".ui.order.OrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.order.OrderOverviewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.commodity.CommodityActivity"
             android:exported="false" />
         <activity
             android:name=".ui.log.RegisterActivity"
@@ -28,7 +34,8 @@
             android:exported="false" />
         <activity
             android:name=".ui.search.SearchPreviewActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:launchMode="singleTask" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

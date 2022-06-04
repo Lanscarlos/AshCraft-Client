@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +17,7 @@ import top.lanscarlos.ashcraft.databinding.FragmentProfileBinding
 import top.lanscarlos.ashcraft.model.ProfileViewModel
 import top.lanscarlos.ashcraft.repository.UserRepository
 import top.lanscarlos.ashcraft.ui.log.LoginActivity
+import top.lanscarlos.ashcraft.ui.order.OrderOverviewActivity
 
 class ProfileFragment : Fragment() {
 
@@ -51,21 +53,55 @@ class ProfileFragment : Fragment() {
             textMoney.text = String.format("%.2f", it)
         }
 
-        val boot = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            if (it.resultCode != Activity.RESULT_OK) return@registerForActivityResult
-            "登录成功！".showToast()
+        UserRepository.setOnRefresh {
             refresh()
         }
 
         binding.profileHeader.avatar.setOnClickListener {
             if (user != null) return@setOnClickListener
-            boot.launch(Intent(requireContext(), LoginActivity::class.java))
+            startActivity(Intent(requireContext(), LoginActivity::class.java))
         }
 
         binding.profileBody.logout.setOnClickListener {
             if (user == null) return@setOnClickListener
             UserRepository.logout()
             refresh()
+        }
+
+        binding.profileBody.moneyCard.setOnClickListener {
+            "充值入口维护中...敬请期待！".showToast()
+        }
+
+        binding.profileBody.star.setOnClickListener {
+            "收藏功能开发中...敬请期待！".showToast()
+        }
+
+        binding.profileBody.subscribe.setOnClickListener {
+            "订阅功能开发中...敬请期待！".showToast()
+        }
+
+        binding.profileBody.history.setOnClickListener {
+            "足迹功能开发中...敬请期待！".showToast()
+        }
+
+        binding.profileBody.order.setOnClickListener {
+            startActivity(Intent(requireContext(), OrderOverviewActivity::class.java))
+        }
+
+        binding.profileBody.service.setOnClickListener {
+            "客服功能开发中...敬请期待！".showToast()
+        }
+
+        binding.profileBody.serviceTip.setOnClickListener {
+            "客服功能开发中...敬请期待！".showToast()
+        }
+
+        binding.profileBody.setting.setOnClickListener {
+            "设置功能开发中...敬请期待！".showToast()
+        }
+
+        binding.profileBody.settingTip.setOnClickListener {
+            "设置功能开发中...敬请期待！".showToast()
         }
 
         refresh()

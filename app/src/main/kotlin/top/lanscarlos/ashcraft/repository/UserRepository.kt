@@ -3,20 +3,14 @@ package top.lanscarlos.ashcraft.repository
 import android.content.Context
 import android.util.Log
 import androidx.core.content.edit
-import com.google.gson.Gson
 import com.google.gson.JsonObject
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import top.lanscarlos.ashcraft.AshCraftContext
-import top.lanscarlos.ashcraft.internet.BaseUrl
 import top.lanscarlos.ashcraft.internet.UserService
+import top.lanscarlos.ashcraft.pojo.Cart
 import top.lanscarlos.ashcraft.pojo.User
 import top.lanscarlos.ashcraft.pojo.User.Companion.fixed
 import top.lanscarlos.ashcraft.remote.RemoteUser
 import top.lanscarlos.ashcraft.util.*
-import java.io.BufferedInputStream
-import java.io.BufferedReader
-import java.io.InputStreamReader
 import java.lang.NullPointerException
 import java.util.*
 
@@ -46,6 +40,8 @@ object UserRepository {
     var user: User? = null
         private set
 
+    var onRefreshListener: ((User?) -> Unit)? = null
+
     init {
         Log.d("Ash", "init user")
         tryAutoLogin()
@@ -66,14 +62,16 @@ object UserRepository {
         }) { _, response ->
             val stream = response.body()?.byteStream() ?: throw NullPointerException("byteStream is null")
             val json = stream.asString().parseJson<JsonObject>()
-            if (!json.get("result").asBoolean) return@enqueue
+//            if (!json.get("result").asBoolean) return@enqueue
             when (json.get("type").asString) {
                 "user" -> {
                     user = json.get("user").parse<RemoteUser>().fixed()
                     rememberLog = phone to password
                     CartRepository.refresh()
+                    refresh()
                     onResponse(user)
                 }
+                else -> onResponse(null)
             }
         }
     }
@@ -94,7 +92,16 @@ object UserRepository {
 
     fun logout() {
         user = null
+        refresh()
         CartRepository.refresh()
+    }
+
+    fun refresh() {
+        onRefreshListener?.let { it(user) }
+    }
+
+    fun setOnRefresh(onChanged: ((User?) -> Unit)?) {
+        onRefreshListener = onChanged
     }
 
     private fun analogInit() {

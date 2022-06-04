@@ -3,17 +3,14 @@ package top.lanscarlos.ashcraft.repository
 import android.util.Log
 import top.lanscarlos.ashcraft.AshCraftContext
 import top.lanscarlos.ashcraft.internet.CartService
-import top.lanscarlos.ashcraft.internet.UserService
 import top.lanscarlos.ashcraft.pojo.Cart
 import top.lanscarlos.ashcraft.pojo.Cart.Companion.fixed
 import top.lanscarlos.ashcraft.pojo.CartItem
+import top.lanscarlos.ashcraft.pojo.Commodity
 import top.lanscarlos.ashcraft.remote.RemoteCart
 import top.lanscarlos.ashcraft.remote.RemoteCartItem
 import top.lanscarlos.ashcraft.remote.RemoteCommodity
-import top.lanscarlos.ashcraft.remote.RemoteUser
 import top.lanscarlos.ashcraft.util.enqueue
-import java.lang.NullPointerException
-import java.util.*
 
 object CartRepository {
 
@@ -26,36 +23,97 @@ object CartRepository {
 
     val items get() = cart?.items
 
-    var onChangedListener: ((Cart?) -> Unit)? = null
+    var onRefreshListener: ((Cart?) -> Unit)? = null
 
     init {
         Log.d("Ash", "init cart")
         tryAccessData()
     }
 
-    fun tryAccessData(onResponse: (Cart?) -> Unit = {}) {
-        val userId = UserRepository.user?.id ?: return
-        service.getCart(userId).enqueue { _, response ->
+    fun tryAccessData(callChange: Boolean = true, onResponse: (Cart?) -> Unit = {}) {
+        val userId = (if (UserRepository.user == null) {
+            onResponse(null)
+            null
+        } else UserRepository.user?.id) ?: return
+        service.getCart(userId).enqueue(onFailure = { _, _ ->
+            onResponse(null)
+        }) { _, response ->
             cart = response.body()?.fixed()
             onResponse(cart)
-            onChangedListener?.let { it(cart) }
+            if (callChange) {
+                onRefreshListener?.let { it(cart) }
+            }
+        }
+    }
+
+    fun selectItem(itemId: Int, selected: Boolean, onResponse: (Cart?) -> Unit = {}) {
+        val cart = cart ?: return
+        service.select(cart.id, itemId, selected).enqueue(onFailure = { _, _ ->
+            onResponse(null)
+        }) { _, response ->
+            this.cart = response.body()?.fixed()
+            onResponse(this.cart)
+//            onChangedListener?.let { it(this.cart) }
+        }
+    }
+
+    fun addItem(commodity: Commodity, onResponse: (Cart?) -> Unit = {}) {
+        val cart = cart ?: return
+        service.addItem(cart.id, commodity.id).enqueue(onFailure = { _, _ ->
+            onResponse(null)
+        }) { _, response ->
+            this.cart = response.body()?.fixed()
+            onResponse(this.cart)
+            onRefreshListener?.let { it(this.cart) }
+        }
+    }
+
+    fun removeItem(item: CartItem, onResponse: (Cart?) -> Unit = {}) {
+        val cart = cart ?: return
+        service.removeItem(cart.id, item.id).enqueue(onFailure = { _, _ ->
+            onResponse(null)
+        }) { _, response ->
+            this.cart = response.body()?.fixed()
+//            onChangedListener?.let { it(this.cart) }
+        }
+    }
+
+    fun increaseAmount(item: CartItem, onResponse: (Cart?) -> Unit) {
+        val cart = cart ?: return
+        service.increaseAmount(cart.id, item.id).enqueue(onFailure = { _, _ ->
+            onResponse(null)
+        }) { _, response ->
+            this.cart = response.body()?.fixed()
+            onResponse(this.cart)
+//            onChangedListener?.let { it(this.cart) }
+        }
+    }
+
+    fun decreaseAmount(item: CartItem, onResponse: (Cart?) -> Unit) {
+        val cart = cart ?: return
+        service.decreaseAmount(cart.id, item.id).enqueue(onFailure = { _, _ ->
+            onResponse(null)
+        }) { _, response ->
+            this.cart = response.body()?.fixed()
+            onResponse(this.cart)
+//            onChangedListener?.let { it(this.cart) }
         }
     }
 
     fun refresh() {
         val userId = UserRepository.user?.id
         if (userId == null) {
-            onChangedListener?.let { it(cart) }
+            onRefreshListener?.let { it(cart) }
             return
         }
         service.getCart(userId).enqueue { _, response ->
             cart = response.body()?.fixed()
-            onChangedListener?.let { it(cart) }
+            onRefreshListener?.let { it(cart) }
         }
     }
 
-    fun setOnChanged(onChanged: ((Cart?) -> Unit)?) {
-        onChangedListener = onChanged
+    fun setOnRefresh(onChanged: ((Cart?) -> Unit)?) {
+        onRefreshListener = onChanged
     }
 
     private fun analogInit() {

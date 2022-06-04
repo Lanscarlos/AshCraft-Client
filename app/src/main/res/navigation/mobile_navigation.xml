@@ -12,8 +12,8 @@
 
     <craft_fragment
         android:id="@+id/navigation_chat"
-        android:name="top.lanscarlos.ashcraft.ui.dashboard.DashboardFragment"
-        tools:layout="@layout/fragment_dashboard" />
+        android:name="top.lanscarlos.ashcraft.ui.message.MessageFragment"
+        tools:layout="@layout/fragment_message" />
 
     <craft_fragment
         android:id="@+id/navigation_cart"

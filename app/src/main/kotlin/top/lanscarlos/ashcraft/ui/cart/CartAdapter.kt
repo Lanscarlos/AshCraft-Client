@@ -6,15 +6,11 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
-import top.lanscarlos.ashcraft.AshCraftContext
 import top.lanscarlos.ashcraft.R
-import top.lanscarlos.ashcraft.internet.BaseUrl
-import top.lanscarlos.ashcraft.internet.GenericService.Companion.accessBitmap
 import top.lanscarlos.ashcraft.model.CartViewModel
+import top.lanscarlos.ashcraft.repository.CommodityRepository
 import java.lang.IllegalArgumentException
-import java.lang.IllegalStateException
 
 class CartAdapter(
     val recyclerView: RecyclerView,
@@ -27,7 +23,7 @@ class CartAdapter(
     private val items get() = viewModel.items
 
     override fun getItemViewType(position: Int): Int {
-        return if (position == items.size) TYPE_FOOTER else TYPE_ITEMS
+        return if (position == items?.size ?: 0) TYPE_FOOTER else TYPE_ITEMS
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -45,40 +41,57 @@ class CartAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, index: Int) {
+        val items = items ?: return
         when (holder) {
             is ViewItem -> {
+                holder.isColding = true
                 val item = items[index]
                 holder.name.text = item.name
                 holder.price.text = item.price.toString()
-                holder.selected.isChecked = viewModel.isAllSelected.value
-                item.image?.let { holder.image.setImageBitmap(it) }
+                holder.amount.text = item.amount.toString()
+                holder.selected.isChecked = item.selected
+
+                // 设置图片
+                CommodityRepository.commodities.firstOrNull {
+                    it.id == item.commodity.id
+                }?.image?.let { holder.image.setImageBitmap(it) }
 
                 holder.selected.setOnCheckedChangeListener { _, selected ->
-                    viewModel.selectItem(holder.index, selected)
+                    if (!holder.isColding) viewModel.selectItem(holder.index, selected)
                 }
 
                 holder.add.setOnClickListener {
-                    holder.amount.text = viewModel.increaseItemAmount(holder.index).toString()
+                    if (holder.isColding) return@setOnClickListener
+                    viewModel.increaseItemAmount(holder.index) {
+                        holder.amount.text = it.toString()
+                    }
                 }
 
                 holder.sub.setOnClickListener {
-                    holder.amount.text = viewModel.decreaseItemAmount(holder.index).toString()
+                    if (holder.isColding) return@setOnClickListener
+                    viewModel.decreaseItemAmount(holder.index) {
+                        holder.amount.text = it.toString()
+                    }
                 }
+
+                holder.isColding = false
             }
 //            is ViewFooter -> {}
         }
     }
 
-    override fun getItemCount(): Int = if (items.isNotEmpty()) items.size else 1
+    override fun getItemCount(): Int {
+        return if (items?.isNotEmpty() == true) items?.size ?: 1 else 1
+    }
 
     fun getItemHolder(index: Int): ViewItem? {
-        if (items.isEmpty()) return null
+        if (items == null || items!!.isEmpty()) return null
         val layoutManager = recyclerView.layoutManager ?: return null
         return layoutManager.getChildAt(index)?.let { recyclerView.getChildViewHolder(it) } as? ViewItem
     }
 
     fun forEach(func: ((index: Int, holder: ViewItem) -> Unit)) {
-        if (items.isEmpty()) return
+        if (items == null || items!!.isEmpty()) return
         val layoutManager = recyclerView.layoutManager ?: return
         for (i in 0 until layoutManager.childCount) {
             val holder = layoutManager.getChildAt(i)?.let { recyclerView.getChildViewHolder(it) }
@@ -98,6 +111,9 @@ class CartAdapter(
         val amount = view.findViewById<TextView>(R.id.amount)
         val add = view.findViewById<ImageView>(R.id.add)
         val sub = view.findViewById<ImageView>(R.id.sub)
+
+        // 冷却中...
+        var isColding = false
 
         val index get() = bindingAdapterPosition
         var isRemoved = false

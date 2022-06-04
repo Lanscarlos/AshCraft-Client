@@ -28,6 +28,7 @@ class AshCraftContext : Application() {
         val theme by lazy { mutableLiveOf(R.style.blue) }
 
         val baseUrl = BaseUrl.LANSCARLOS
+//        val baseUrl = BaseUrl.LOCALHOST
 
         val retrofit by lazy {
             Retrofit.Builder().apply {

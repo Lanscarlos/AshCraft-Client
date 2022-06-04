@@ -1,5 +1,6 @@
 package top.lanscarlos.ashcraft.ui.search
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -28,14 +29,33 @@ class SearchResultActivity : AppCompatActivity() {
         _binding = ActivitySearchResultBinding.inflate(layoutInflater, null, false)
         setContentView(binding.root)
 
-        val data = mutableListOf<Nameable>().apply {
-            addAll(CommodityRepository.commodities)
-            addAll(ShopRepository.shops)
+        val keyword = intent?.getStringExtra("keyword")
+        val result = if (keyword.equals("ALL", true) || keyword in listOf("全部", "所有")) {
+            mutableListOf<Nameable>().apply {
+                addAll(CommodityRepository.commodities)
+                addAll(ShopRepository.shops)
+            }
+        } else if (keyword in listOf("全部商品", "所有商品")) {
+            CommodityRepository.commodities
+        } else if (keyword in listOf("全部店铺", "所有店铺")) {
+            ShopRepository.shops
+        } else {
+            mutableListOf<Nameable>().apply {
+                addAll(CommodityRepository.commodities)
+                addAll(ShopRepository.shops)
+            }.filter {
+                if (keyword!= null) it.name.startsWith(keyword) else true
+            }
         }
 
-        val search = intent?.getStringExtra("search")
-        val result = data.filter {
-            if (search!= null) it.name.startsWith(search) else true
+        binding.searchInput.setText(keyword ?: "")
+        binding.searchInput.setOnFocusChangeListener { v, hasFocus ->
+            if (!hasFocus) return@setOnFocusChangeListener
+            v.clearFocus()
+            startActivity(Intent(this, SearchPreviewActivity::class.java).apply {
+                putExtra("keyword", keyword)
+            })
+            finish()
         }
 
         val viewPager = binding.viewPager
@@ -54,13 +74,6 @@ class SearchResultActivity : AppCompatActivity() {
         mediator.attach()
 
         binding.back.setOnClickListener {
-            finish()
-        }
-
-        binding.searchInput.setText(intent.getStringExtra("search") ?: "")
-        binding.searchInput.setOnFocusChangeListener { v, hasFocus ->
-            if (!hasFocus) return@setOnFocusChangeListener
-            v.clearFocus()
             finish()
         }
     }

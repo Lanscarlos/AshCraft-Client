@@ -10,9 +10,10 @@ class CartItem(
     remote: RemoteCartItem
 ) {
 
-    var selected = false
+    val id = remote.id
+    var selected = remote.isSelected
     val commodity = remote.commodity.fixed()
-    var amount: Int = remote.amount
+    var amount = remote.amount
     var totalPrice = remote.totalPrice
 
     val name get() = commodity.name

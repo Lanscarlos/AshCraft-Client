@@ -46,9 +46,10 @@ class CraftLiveData<T> : MutableLiveData<T> {
     /**
      * 静默设置值，即不触发改变事件
      * */
-    fun setValueSilent(value: T) {
+    fun setValueSilent(value: T, replace: Boolean = false) {
+        if (this.value == value && !replace) return
         this.silent = true
-        this.value = value
+        this.setValue(value, replace)
     }
 
     fun observe(owner: LifecycleOwner, runFirst: Boolean = false, func: (T) -> Unit) {

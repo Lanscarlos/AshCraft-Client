@@ -8,32 +8,38 @@ import top.lanscarlos.ashcraft.util.mutableLiveOf
 
 class CartViewModel : ViewModel() {
 
+    private val repository = CartRepository
+    private val cart get() =  repository.cart
+    val items get() =  cart?.items
+
     private val silentSelecting = mutableLiveOf(false)
     private val selectedCount = mutableLiveOf(0)
     val itemSelected = mutableLiveOf(
-        false,
+        cart?.isAllSelected ?: false,
         preObserve = { silentSelecting.value = true },
         postObserve = { silentSelecting.value = false },
     )
-    val isAllSelected = mutableLiveOf(false)
-
-    private val repository = CartRepository
-    private var cart = repository.cart
-    private val _items = cart?.items?.toMutableList()
-
-    val items: List<CartItem> get() = _items!!
-    val itemCount = mutableLiveOf(items.size)
+    val isAllSelected = mutableLiveOf(cart?.isAllSelected ?: false)
+//    val items: List<CartItem> get() = _items!!
+    val itemCount = mutableLiveOf(items?.size ?: 0)
     val totalPrice = mutableLiveOf(cart?.totalPrice ?: 0.0)
 
     fun refresh(onResponse: () -> Unit) {
-        repository.tryAccessData {
-            cart = it
+        repository.tryAccessData(false) {
+            silentSelecting.value = true
+            selectedCount.setValueSilent(it?.selectCount ?: 0)
+            itemSelected.setValueSilent(it?.isAllSelected ?: false)
+            itemCount.value = items?.size ?: 0
+            totalPrice.value = it?.totalPrice ?: 0.0
+            isAllSelected.value = it?.isAllSelected ?: false
+            silentSelecting.value = false
             onResponse()
         }
     }
 
     fun selectItem(index: Int, selected: Boolean) {
         val cart = this.cart ?: return
+        val items = cart.items
         if (silentSelecting.value || index !in items.indices) return
         val item = items[index]
         if (selected) {
@@ -57,10 +63,15 @@ class CartViewModel : ViewModel() {
         }
         item.selected = selected
         totalPrice.value = cart.totalPrice
+
+        CartRepository.selectItem(item.id, selected) {
+            totalPrice.value = it?.totalPrice ?: 0.0
+        }
     }
 
     fun selectAll(selected: Boolean) {
         val cart = this.cart ?: return
+        val items = cart.items
 
         /*
         * 阻断事件重复回传
@@ -80,19 +91,15 @@ class CartViewModel : ViewModel() {
         * */
         itemSelected.value = selected
 
-        cart.totalPrice = 0.0
-        items.forEach {
-            it.selected = selected
-            if (selected) {
-                cart.totalPrice += it.totalPrice
-            }
+        CartRepository.selectItem(-1, selected) {
+            selectedCount.value = if (selected) items.size else 0
+            totalPrice.value = it?.totalPrice ?: 0.0
         }
-        selectedCount.value = if (selected) items.size else 0
-        totalPrice.value = cart.totalPrice
     }
 
     fun removeItem(index: Int) {
         val cart = this.cart ?: return
+        val items = cart.items
         if (index !in items.indices) return
         val item = items[index]
         if (item.selected) {
@@ -102,69 +109,34 @@ class CartViewModel : ViewModel() {
         }
         itemCount.value -= 1
 
-        _items!!.removeAt(index)
-
-        /*
-        *
-        * 更新数据库内容
-        * 待编辑...
-        *
-        * */
+        items.removeAt(index)
+        CartRepository.removeItem(item)
     }
 
-    fun increaseItemAmount(index: Int): Int {
-        val cart = this.cart ?: return -1
-        if (index !in items.indices) return -1
-        val item = items[index]
+    fun increaseItemAmount(index: Int, onResponse: (Int) -> Unit) {
+        val items = this.cart?.items ?: return
+        if (index !in items.indices) return
 
-        /*
-        * 添加数量
-        * */
-        item.amount += 1
-        item.totalPrice += item.price
-
-        /*
-        * 检查是否需要修改总价
-        * */
-        if (item.selected) {
-            cart.totalPrice += item.price
-            totalPrice.value = cart.totalPrice
+        val id = items[index].id
+        // 更新数据库数据
+        CartRepository.increaseAmount(items[index]) { cart ->
+            val item = cart?.items?.firstOrNull { id == it.id }
+            onResponse(item?.amount ?: -1)
+            totalPrice.value = cart?.totalPrice ?: 0.0
         }
-
-        /*
-        * 返回数值改变子项内容
-        * */
-        return item.amount
     }
 
-    fun decreaseItemAmount(index: Int): Int {
-        val cart = this.cart ?: return -1
-        if (index !in items.indices) return -1
-        val item = items[index]
+    fun decreaseItemAmount(index: Int, onResponse: (Int) -> Unit) {
+        val items = this.cart?.items ?: return
+        if (index !in items.indices) return
 
-        /*
-        * 数量不能小于 1
-        * */
-        if (item.amount <= 1) return item.amount
-
-        /*
-        * 添加数量
-        * */
-        item.amount -= 1
-        item.totalPrice -= item.price
-
-        /*
-        * 检查是否需要修改总价
-        * */
-        if (item.selected) {
-            cart.totalPrice -= item.price
-            totalPrice.value = cart.totalPrice
+        val id = items[index].id
+        // 更新数据库数据
+        CartRepository.decreaseAmount(items[index]) { cart ->
+            val item = cart?.items?.firstOrNull { id == it.id }
+            onResponse(item?.amount ?: -1)
+            totalPrice.value = cart?.totalPrice ?: 0.0
         }
-
-        /*
-        * 返回数值改变子项内容
-        * */
-        return item.amount
     }
 
 }

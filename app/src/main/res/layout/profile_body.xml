@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardView2"
+        android:id="@+id/moneyCard"
         android:layout_width="match_parent"
         android:layout_height="96dp"
         android:layout_marginStart="32dp"
@@ -50,15 +50,15 @@
     </com.google.android.material.card.MaterialCardView>
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/star"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView5"
+        app:layout_constraintEnd_toStartOf="@+id/subscribe"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialCardView2"
-        app:srcCompat="@drawable/icon_cart"
+        app:layout_constraintTop_toBottomOf="@+id/moneyCard"
+        app:srcCompat="@drawable/icon_collection"
         app:tint="?attr/colorPrimary" />
 
     <TextView
@@ -67,21 +67,21 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/title_profile_star"
-        app:layout_constraintEnd_toEndOf="@+id/imageView3"
-        app:layout_constraintStart_toStartOf="@+id/imageView3"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintEnd_toEndOf="@+id/star"
+        app:layout_constraintStart_toStartOf="@+id/star"
+        app:layout_constraintTop_toBottomOf="@+id/star" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/subscribe"
         android:layout_width="32dp"
         android:layout_height="32dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-        app:layout_constraintEnd_toStartOf="@+id/imageView6"
+        app:layout_constraintBottom_toBottomOf="@+id/star"
+        app:layout_constraintEnd_toStartOf="@+id/history"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="@+id/imageView3"
+        app:layout_constraintStart_toEndOf="@+id/star"
+        app:layout_constraintTop_toTopOf="@+id/star"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/icon_cart"
+        app:srcCompat="@drawable/bitmap_subscription"
         app:tint="?attr/colorPrimary" />
 
     <TextView
@@ -90,34 +90,34 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/title_profile_subscribe"
-        app:layout_constraintEnd_toEndOf="@+id/imageView5"
-        app:layout_constraintStart_toStartOf="@+id/imageView5"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+        app:layout_constraintEnd_toEndOf="@+id/subscribe"
+        app:layout_constraintStart_toStartOf="@+id/subscribe"
+        app:layout_constraintTop_toBottomOf="@+id/subscribe" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/history"
         android:layout_width="32dp"
         android:layout_height="32dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView5"
-        app:layout_constraintEnd_toStartOf="@+id/imageView7"
+        app:layout_constraintBottom_toBottomOf="@+id/subscribe"
+        app:layout_constraintEnd_toStartOf="@+id/order"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageView5"
-        app:layout_constraintTop_toTopOf="@+id/imageView5"
+        app:layout_constraintStart_toEndOf="@+id/subscribe"
+        app:layout_constraintTop_toTopOf="@+id/subscribe"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/icon_cart"
+        app:srcCompat="@drawable/bitmap_history"
         app:tint="?attr/colorPrimary" />
 
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/order"
         android:layout_width="32dp"
         android:layout_height="32dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+        app:layout_constraintBottom_toBottomOf="@+id/history"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageView6"
-        app:layout_constraintTop_toTopOf="@+id/imageView6"
+        app:layout_constraintStart_toEndOf="@+id/history"
+        app:layout_constraintTop_toTopOf="@+id/history"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/icon_cart"
+        app:srcCompat="@drawable/bitmap_order"
         app:tint="?attr/colorPrimary" />
 
     <TextView
@@ -126,9 +126,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/title_profile_history"
-        app:layout_constraintEnd_toEndOf="@+id/imageView6"
-        app:layout_constraintStart_toStartOf="@+id/imageView6"
-        app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+        app:layout_constraintEnd_toEndOf="@+id/history"
+        app:layout_constraintStart_toStartOf="@+id/history"
+        app:layout_constraintTop_toBottomOf="@+id/history" />
 
     <TextView
         android:id="@+id/textView8"
@@ -136,12 +136,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/title_profile_order"
-        app:layout_constraintEnd_toEndOf="@+id/imageView7"
-        app:layout_constraintStart_toStartOf="@+id/imageView7"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+        app:layout_constraintEnd_toEndOf="@+id/order"
+        app:layout_constraintStart_toStartOf="@+id/order"
+        app:layout_constraintTop_toBottomOf="@+id/order" />
 
     <ImageView
-        android:id="@+id/imageView8"
+        android:id="@+id/service"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginStart="32dp"
@@ -152,44 +152,44 @@
         app:tint="?attr/colorPrimary" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/serviceTip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:text="@string/title_profile_service"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView8"
-        app:layout_constraintStart_toEndOf="@+id/imageView8"
-        app:layout_constraintTop_toTopOf="@+id/imageView8" />
+        app:layout_constraintBottom_toBottomOf="@+id/service"
+        app:layout_constraintStart_toEndOf="@+id/service"
+        app:layout_constraintTop_toTopOf="@+id/service" />
 
     <ImageView
-        android:id="@+id/imageView9"
+        android:id="@+id/setting"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="@+id/imageView8"
+        app:layout_constraintEnd_toEndOf="@+id/service"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/imageView8"
-        app:layout_constraintTop_toBottomOf="@+id/imageView8"
+        app:layout_constraintStart_toStartOf="@+id/service"
+        app:layout_constraintTop_toBottomOf="@+id/service"
         app:srcCompat="@drawable/bitmap_setting"
         app:tint="?attr/colorPrimary" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/settingTip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/title_profile_settings"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView9"
-        app:layout_constraintStart_toStartOf="@+id/textView9"
-        app:layout_constraintTop_toTopOf="@+id/imageView9" />
+        app:layout_constraintBottom_toBottomOf="@+id/setting"
+        app:layout_constraintStart_toStartOf="@+id/serviceTip"
+        app:layout_constraintTop_toTopOf="@+id/setting" />
 
     <ImageView
         android:id="@+id/imageView11"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginEnd="32dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView8"
+        app:layout_constraintBottom_toBottomOf="@+id/service"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView8"
+        app:layout_constraintTop_toTopOf="@+id/service"
         app:srcCompat="@drawable/bitmap_arrow_right"
         app:tint="?attr/colorPrimary" />
 
@@ -197,10 +197,10 @@
         android:id="@+id/imageView12"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView9"
+        app:layout_constraintBottom_toBottomOf="@+id/setting"
         app:layout_constraintEnd_toEndOf="@+id/imageView11"
         app:layout_constraintStart_toStartOf="@+id/imageView11"
-        app:layout_constraintTop_toTopOf="@+id/imageView9"
+        app:layout_constraintTop_toTopOf="@+id/setting"
         app:srcCompat="@drawable/bitmap_arrow_right"
         app:tint="?attr/colorPrimary" />
 
@@ -214,18 +214,19 @@
         android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintTop_toBottomOf="@+id/star" />
 
     <Button
         android:id="@+id/logout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
         android:background="@drawable/btn_standard"
         android:textColor="@color/white"
         android:text="退出登录"
-        app:layout_constraintEnd_toEndOf="@+id/materialCardView2"
-        app:layout_constraintStart_toStartOf="@+id/materialCardView2"
-        app:layout_constraintTop_toBottomOf="@+id/imageView9" />
+        app:layout_constraintEnd_toEndOf="@+id/moneyCard"
+        app:layout_constraintStart_toStartOf="@+id/moneyCard"
+        app:layout_constraintTop_toBottomOf="@+id/setting" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,8 @@
 package top.lanscarlos.ashcraft.ui.search
 
-import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,9 +14,11 @@ import top.lanscarlos.ashcraft.R
 import top.lanscarlos.ashcraft.pojo.Commodity
 import top.lanscarlos.ashcraft.pojo.Nameable
 import top.lanscarlos.ashcraft.pojo.Shop
+import top.lanscarlos.ashcraft.ui.commodity.CommodityActivity
 import java.lang.IllegalArgumentException
 
 class SearchResultAdapter(
+    val context: Context,
     type: Int= TYPE_ALL,
     commodities: List<Nameable>
 ) : RecyclerView.Adapter<SearchResultAdapter.ViewHolder>() {
@@ -71,6 +75,12 @@ class SearchResultAdapter(
                 holder.price.text = item.price.toString()
                 holder.type.text = item.category
                 item.image?.let { holder.image.setImageBitmap(it) }
+
+                holder.itemView.setOnClickListener {
+                    context.startActivity(Intent(context, CommodityActivity::class.java).apply {
+                        putExtra("commodityId", item.id)
+                    })
+                }
             }
             is ViewShop -> {
                 val item = items[index] as? Shop ?: return
